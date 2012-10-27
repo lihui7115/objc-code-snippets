@@ -1,0 +1,18 @@
+#ifdef __OBJC__
+    // default cocoa definitions
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    // magical record short hand
+    #define MR_SHORTHAND
+    // disable magical record loggin
+    #define MR_ENABLE_ACTIVE_RECORD_LOGGING 0
+    // global import magical record
+    #import "CoreData+MagicalRecord.h"
+#endif
+
+// for iphone 5 checks
+#define isPhone568 ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone && [UIScreen mainScreen].bounds.size.height == 568)
+
+#define iPhone568ImageNamed(image) (isPhone568 ? [NSString stringWithFormat:@"%@-568h.%@", [image stringByDeletingPathExtension], [image pathExtension]] : image)
+
+#define iPhone568Image(image) ([UIImage imageNamed:iPhone568ImageNamed(image)])
